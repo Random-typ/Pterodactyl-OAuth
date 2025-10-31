@@ -4,11 +4,6 @@ from urllib.parse import unquote
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-s = requests.Session()
-#s.headers.update({
-#    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:144.0) Gecko/20100101 Firefox/144.0',
-#    'Accept': 'application/json',
-#})
 VERIFY_SSL = True
 
 # panelURL: E.g. https://pterodactyl.example.com
@@ -16,6 +11,7 @@ VERIFY_SSL = True
 # password: password
 # returns empty string on values, otherwise cookies to set
 def getPterodactylSession(panelURL, login, password):
+    s = requests.Session()
     csrf_url = f"{panelURL}/sanctum/csrf-cookie"
     try:
         print(f"[*] GET: Initializing session at {csrf_url}...")
