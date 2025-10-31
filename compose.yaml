@@ -1,0 +1,11 @@
+services:
+  pterodactylSSO:
+    build: .
+    container_name: pterodactylSSO
+    environment:
+      - OIDC_CLIENT_ID =
+      - OIDC_CLIENT_SECRET =
+      - OIDC_DISCOVERY_URL =
+      - OIDC_END_SESSION_ENDPOINT =
+      - PANEL_URL =
+      - PTERODACTYL_API =

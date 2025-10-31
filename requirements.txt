@@ -1,0 +1,6 @@
+Authlib
+PterodactylClient
+fastapi
+urllib3
+py-dactyl
+python-dotenv
