@@ -35,7 +35,7 @@ app.add_middleware(SessionMiddleware, secret_key=OIDC_CLIENT_SECRET)
 app.add_middleware(ProxyHeadersMiddleware, trusted_hosts="*")
 
 def isPterodactylPasswordKnown(uuid):
-    return pterodactylLogins[uuid] is not None
+    return uuid in pterodactylLogins
 
 pterodactylLogins = {}
 def getPterodactylPassword(uuid):
@@ -73,14 +73,15 @@ async def auth_callback(request: Request):
         login=token['userinfo']['email'],
         password=getPterodactylPassword(token['userinfo']['sub']))
     
-    if not session:
+    if len(session) == 0:
         # Handle login failure
         return Response("Failed to log into Pterodactyl.", status_code=500)
 
     # Redirect to the final destination and set the cookie
     final_url = request.session.pop('final_redirect', '/')
     response = RedirectResponse(url=final_url)
-    response.headers.append(key='Set-Cookie', value=session)
+    for k, v in session:
+        response.set_cookie(key=k, value=v, path='/', secure=True, samesite='lax', max_age='session', expires='Session')
     return response
 
 @app.get("/sso/logout")
