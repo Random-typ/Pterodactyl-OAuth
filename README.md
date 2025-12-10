@@ -6,7 +6,7 @@ A very basic, more or less secure, OAuth implementation for Pterodactyl Panel. T
 
 ### ⚠️Security Warning
 > This is not a real Pterodactyl Panel OAuth implementation, but it comes pretty close and is as secure as
-> 24 character long randomly generated passwords get. See the How It Works section for further information.
+> 24 character long randomly generated passwords get. See the [How It Works](https://github.com/Random-typ/Pterodactyl-OAuth?tab=readme-ov-file#how-it-works) section for further information.
 
 ### Migrating Existing Users
 Not yet implemented.
